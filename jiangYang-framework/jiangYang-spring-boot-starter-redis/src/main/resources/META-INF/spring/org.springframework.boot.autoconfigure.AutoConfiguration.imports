@@ -1,0 +1,2 @@
+com.jiangYang.cloud.framework.redis.config.JiangYangRedisAutoConfiguration
+com.jiangYang.cloud.framework.redis.config.JiangYangCacheAutoConfiguration

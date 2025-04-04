@@ -1,0 +1,6 @@
+com.jiangYang.cloud.framework.apilog.config.JiangYangApiLogAutoConfiguration
+com.jiangYang.cloud.framework.jackson.config.JiangYangJacksonAutoConfiguration
+com.jiangYang.cloud.framework.swagger.config.JiangYangSwaggerAutoConfiguration
+com.jiangYang.cloud.framework.web.config.JiangYangWebAutoConfiguration
+com.jiangYang.cloud.framework.apilog.config.JiangYangApiLogRpcAutoConfiguration
+com.jiangYang.cloud.framework.banner.config.JiangYangBannerAutoConfiguration

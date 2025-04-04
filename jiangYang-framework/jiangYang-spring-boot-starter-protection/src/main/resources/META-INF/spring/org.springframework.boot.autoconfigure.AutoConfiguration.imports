@@ -1,0 +1,4 @@
+com.jiangYang.cloud.framework.idempotent.config.JiangYangIdempotentConfiguration
+com.jiangYang.cloud.framework.lock4j.config.JiangYangLock4jConfiguration
+com.jiangYang.cloud.framework.ratelimiter.config.JiangYangRateLimiterConfiguration
+com.jiangYang.cloud.framework.signature.config.JiangYangApiSignatureAutoConfiguration

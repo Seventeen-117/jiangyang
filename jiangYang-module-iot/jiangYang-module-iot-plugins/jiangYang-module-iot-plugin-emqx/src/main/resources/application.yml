@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: jiangYang-module-iot-plugin-emqx
+
+jiangYang:
+  iot:
+    plugin:
+      common:
+        upstream-url: http://127.0.0.1:48080
+        downstream-port: 8100
+        plugin-key: jiangYang-module-iot-plugin-emqx
+      emqx:
+        mqtt-host: 8.133.246.113
+        mqtt-port: 1883
+        mqtt-ssl: false
+        mqtt-username: admin
+        mqtt-password: zly689258..
+        mqtt-topics:
+          - "/sys/#"
+        auth-port: 8101

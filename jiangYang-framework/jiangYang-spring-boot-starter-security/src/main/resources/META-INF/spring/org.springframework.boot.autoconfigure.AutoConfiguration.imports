@@ -1,0 +1,5 @@
+com.jiangYang.cloud.framework.security.config.JiangYangSecurityRpcAutoConfiguration
+com.jiangYang.cloud.framework.security.config.JiangYangSecurityAutoConfiguration
+com.jiangYang.cloud.framework.security.config.JiangYangWebSecurityConfigurerAdapter
+com.jiangYang.cloud.framework.operatelog.config.JiangYangOperateLogConfiguration
+com.jiangYang.cloud.framework.operatelog.config.JiangYangOperateLogRpcAutoConfiguration

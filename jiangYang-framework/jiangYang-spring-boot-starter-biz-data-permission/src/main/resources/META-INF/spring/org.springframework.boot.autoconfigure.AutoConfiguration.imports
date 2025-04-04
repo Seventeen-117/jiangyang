@@ -1,0 +1,3 @@
+com.jiangYang.cloud.framework.datapermission.config.JiangYangDataPermissionAutoConfiguration
+com.jiangYang.cloud.framework.datapermission.config.JiangYangDeptDataPermissionAutoConfiguration
+com.jiangYang.cloud.framework.datapermission.config.JiangYangDataPermissionRpcAutoConfiguration
