@@ -7,24 +7,21 @@ import com.jiangYang.cloud.framework.common.enums.UserTypeEnum;
 import com.jiangYang.cloud.framework.common.pojo.CommonResult;
 import com.jiangYang.cloud.framework.security.config.SecurityProperties;
 import com.jiangYang.cloud.framework.security.core.util.SecurityFrameworkUtils;
-import com.jiangYang.cloud.module.system.controller.admin.auth.vo.AuthLoginReqVO;
-import com.jiangYang.cloud.module.system.controller.admin.auth.vo.AuthLoginRespVO;
-import com.jiangYang.cloud.module.system.controller.admin.auth.vo.AuthPermissionInfoRespVO;
-import com.jiangYang.cloud.module.system.controller.admin.auth.vo.AuthRegisterReqVO;
-import com.jiangYang.cloud.module.system.controller.admin.auth.vo.AuthResetPasswordReqVO;
-import com.jiangYang.cloud.module.system.controller.admin.auth.vo.AuthSmsLoginReqVO;
-import com.jiangYang.cloud.module.system.controller.admin.auth.vo.AuthSmsSendReqVO;
-import com.jiangYang.cloud.module.system.controller.admin.auth.vo.AuthSocialLoginReqVO;
+import com.jiangYang.cloud.framework.tenant.core.context.TenantContextHolder;
+import com.jiangYang.cloud.module.system.controller.admin.auth.vo.*;
 import com.jiangYang.cloud.module.system.convert.auth.AuthConvert;
 import com.jiangYang.cloud.module.system.dal.dataobject.permission.MenuDO;
 import com.jiangYang.cloud.module.system.dal.dataobject.permission.RoleDO;
+import com.jiangYang.cloud.module.system.dal.dataobject.tenant.TenantDO;
 import com.jiangYang.cloud.module.system.dal.dataobject.user.AdminUserDO;
 import com.jiangYang.cloud.module.system.enums.logger.LoginLogTypeEnum;
 import com.jiangYang.cloud.module.system.service.auth.AdminAuthService;
+import com.jiangYang.cloud.module.system.service.auth.AuthQrCodeService;
 import com.jiangYang.cloud.module.system.service.permission.MenuService;
 import com.jiangYang.cloud.module.system.service.permission.PermissionService;
 import com.jiangYang.cloud.module.system.service.permission.RoleService;
 import com.jiangYang.cloud.module.system.service.social.SocialClientService;
+import com.jiangYang.cloud.module.system.service.tenant.TenantService;
 import com.jiangYang.cloud.module.system.service.user.AdminUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -47,9 +44,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import static com.jiangYang.cloud.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.jiangYang.cloud.framework.common.pojo.CommonResult.success;
 import static com.jiangYang.cloud.framework.common.util.collection.CollectionUtils.convertSet;
 import static com.jiangYang.cloud.framework.security.core.util.SecurityFrameworkUtils.getLoginUserId;
+import static com.jiangYang.cloud.module.system.enums.ErrorCodeConstants.TENANT_NOT_EXISTS;
+import com.jiangYang.cloud.framework.tenant.core.util.TenantUtils;
 
 @Tag(name = "管理后台 - 认证")
 @RestController
@@ -73,6 +73,14 @@ public class AuthController {
 
     @Resource
     private SecurityProperties securityProperties;
+
+    @Resource
+    private AuthQrCodeService authQrCodeService;
+    @Resource
+    private TenantService tenantService;
+
+
+
 
     @PostMapping("/login")
     @PermitAll
@@ -181,4 +189,40 @@ public class AuthController {
         return success(authService.socialLogin(reqVO));
     }
 
+
+
+    @PostMapping("/create-qr-code")
+    @PermitAll
+    @Operation(summary = "创建登录二维码")
+    public CommonResult<QrCodeRespVO> createQrCode(@RequestParam("tenantName") String tenantName) {
+        TenantDO tenant = tenantService.getTenantByName(tenantName);
+        if (tenant == null) {
+            throw exception(TENANT_NOT_EXISTS);
+        }
+        return TenantUtils.execute(tenant.getId(), () -> {
+            return success(authQrCodeService.createQrCode(tenantName));
+        });
+    }
+
+    @PostMapping("/scan-qr-code")
+    @PermitAll
+    @Operation(summary = "扫描二维码")
+    public CommonResult<Boolean> scanQrCode(@RequestParam("qrCodeId") String id) {
+        authQrCodeService.scanQrCode(id);
+        return success(true);
+    }
+    @GetMapping("/get-qr-code-status")
+    @PermitAll
+    @Operation(summary = "获取二维码状态")
+    public CommonResult<QrCodeStatusRespVO> getQrCodeStatus(@RequestParam("qrCodeId") String id,@RequestParam("tenantName") String tenantName) {
+        return success(authQrCodeService.getQrCodeStatus(id,tenantName));
+    }
+
+
+    @PostMapping("/verify-qr-code")
+    @PermitAll
+    @Operation(summary = "验证二维码登录信息")
+    public CommonResult<AuthLoginRespVO> verifyQrCode(@RequestBody @Valid QrCodeAuthReqVO reqVO) {
+        return success(authQrCodeService.verifyQrCode(reqVO));
+    }
 }

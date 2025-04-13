@@ -20,6 +20,11 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @Builder
 public class AuthLoginReqVO extends CaptchaVerificationReqVO {
+    @Schema(description = "租户名", requiredMode = Schema.RequiredMode.REQUIRED, example = "JiangYang")
+    @NotEmpty(message = "租户名不能为空")
+    @Length(min = 2, max = 32, message = "租户名长度为 2-32 位")
+    private String tenantName;
+
 
     @Schema(description = "账号", requiredMode = Schema.RequiredMode.REQUIRED, example = "JiangYangyuanma")
     @NotEmpty(message = "登录账号不能为空")

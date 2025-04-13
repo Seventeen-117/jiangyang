@@ -1,0 +1,207 @@
+2025-04-11 22:58:32.718 | [34m INFO 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mc.j.c.m.infra.InfraServerApplication    [0;39m | Starting InfraServerApplication using Java 1.8.0_432 on Ly0217 with PID 23940 (E:\jiangyang\jiangYang-module-infra\jiangYang-module-infra-biz\target\classes started by Administrator in E:\jiangyang)
+2025-04-11 22:58:32.720 | [34m INFO 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mc.j.c.m.infra.InfraServerApplication    [0;39m | The following 1 profile is active: "dev"
+2025-04-11 22:58:32.976 | [34m INFO 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mc.a.c.n.c.NacosConfigDataLoader         [0;39m | [Nacos Config] Load config[dataId=infra-server-dev.yaml, group=DEFAULT_GROUP] success
+2025-04-11 22:58:32.978 | [1;31mERROR 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mc.a.c.n.c.NacosConfigDataLoader         [0;39m | Error getting properties from nacos: NacosConfigDataResource{properties=NacosConfigProperties{serverAddr='8.133.246.113:8848', encode='null', group='DEFAULT_GROUP', prefix='null', fileExtension='yaml', timeout=3000, maxRetry='null', configLongPollTimeout='null', configRetryTime='null', enableRemoteSyncConfig=false, endpoint='null', namespace='d750d92e-152f-4055-a641-3bc9dda85a29', accessKey='null', secretKey='null', ramRoleName='null', contextPath='null', clusterName='null', name='null'', shares=null, extensions=null, refreshEnabled=true}, optional=true, profiles=[Profiles@660acfb active = '[dev]', default = '[default]', accepted = '[dev]'], config=NacosItemConfig{group='DEFAULT_GROUP', dataId='infra-server-dev.yaml', suffix='yaml', refreshEnabled=true, preference=null}}
+
+org.yaml.snakeyaml.constructor.DuplicateKeyException: while constructing a mapping
+ in 'reader', line 253, column 1:
+    management:
+    ^
+found duplicate key spring
+ in 'reader', line 270, column 1:
+    spring:
+    ^
+
+	at org.yaml.snakeyaml.constructor.SafeConstructor.processDuplicateKeys(SafeConstructor.java:105) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.SafeConstructor.flattenMapping(SafeConstructor.java:76) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.SafeConstructor.constructMapping2ndStep(SafeConstructor.java:189) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructMapping(BaseConstructor.java:461) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.SafeConstructor$ConstructYamlMap.construct(SafeConstructor.java:556) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructObjectNoCheck(BaseConstructor.java:230) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructObject(BaseConstructor.java:220) ~[snakeyaml-1.30.jar:na]
+	at org.springframework.boot.env.OriginTrackedYamlLoader$OriginTrackingConstructor.constructObject(OriginTrackedYamlLoader.java:123) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructDocument(BaseConstructor.java:174) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.getData(BaseConstructor.java:139) ~[snakeyaml-1.30.jar:na]
+	at org.springframework.boot.env.OriginTrackedYamlLoader$OriginTrackingConstructor.getData(OriginTrackedYamlLoader.java:103) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.yaml.snakeyaml.Yaml$1.next(Yaml.java:514) ~[snakeyaml-1.30.jar:na]
+	at org.springframework.beans.factory.config.YamlProcessor.process(YamlProcessor.java:199) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.YamlProcessor.process(YamlProcessor.java:166) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.boot.env.OriginTrackedYamlLoader.load(OriginTrackedYamlLoader.java:88) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.env.YamlPropertySourceLoader.load(YamlPropertySourceLoader.java:50) ~[spring-boot-2.7.18.jar:2.7.18]
+	at com.alibaba.cloud.nacos.parser.NacosDataParserHandler.parseNacosData(NacosDataParserHandler.java:92) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader.pullConfig(NacosConfigDataLoader.java:145) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader.doLoad(NacosConfigDataLoader.java:82) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader.load(NacosConfigDataLoader.java:69) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader.load(NacosConfigDataLoader.java:58) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at org.springframework.boot.context.config.ConfigDataLoaders.load(ConfigDataLoaders.java:108) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataImporter.load(ConfigDataImporter.java:132) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataImporter.resolveAndLoad(ConfigDataImporter.java:87) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironmentContributors.withProcessedImports(ConfigDataEnvironmentContributors.java:116) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironment.processWithProfiles(ConfigDataEnvironment.java:311) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironment.processAndApply(ConfigDataEnvironment.java:232) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:102) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:94) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEnvironmentPreparedEvent(EnvironmentPostProcessorApplicationListener.java:102) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEvent(EnvironmentPostProcessorApplicationListener.java:87) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:145) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:133) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:85) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:66) ~[spring-boot-2.7.18.jar:2.7.18]
+	at java.util.ArrayList.forEach(ArrayList.java:1259) ~[na:1.8.0_432]
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:120) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:114) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:65) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:344) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289) [spring-boot-2.7.18.jar:2.7.18]
+	at com.jiangYang.cloud.module.infra.InfraServerApplication.main(InfraServerApplication.java:19) ~[classes/:na]
+
+2025-04-11 22:58:34.784 | [34m INFO 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32m.s.d.r.c.RepositoryConfigurationDelegate[0;39m | Multiple Spring Data modules found, entering strict repository configuration mode
+2025-04-11 22:58:34.787 | [34m INFO 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32m.s.d.r.c.RepositoryConfigurationDelegate[0;39m | Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-04-11 22:58:34.834 | [34m INFO 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32m.s.d.r.c.RepositoryConfigurationDelegate[0;39m | Finished Spring Data repository scanning in 30 ms. Found 0 Redis repository interfaces.
+2025-04-11 22:58:35.081 | [31m WARN 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mConfigServletWebServerApplicationContext[0;39m | Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'com.jiangYang.cloud.framework.mybatis.config.JiangYangMybatisAutoConfiguration#MapperScannerRegistrar#0' defined in null: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"
+2025-04-11 22:58:35.103 | [34m INFO 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mConditionEvaluationReportLoggingListener[0;39m | 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-04-11 22:58:35.133 | [1;31mERROR 23940[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mo.s.boot.SpringApplication              [0;39m | Application run failed
+
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'com.jiangYang.cloud.framework.mybatis.config.JiangYangMybatisAutoConfiguration#MapperScannerRegistrar#0' defined in null: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"
+	at org.springframework.beans.factory.config.PlaceholderConfigurerSupport.doProcessProperties(PlaceholderConfigurerSupport.java:230) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.processProperties(PropertySourcesPlaceholderConfigurer.java:198) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.postProcessBeanFactory(PropertySourcesPlaceholderConfigurer.java:173) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.mybatis.spring.mapper.MapperScannerConfigurer.processPropertyPlaceHolders(MapperScannerConfigurer.java:406) ~[mybatis-spring-2.1.2.jar:2.1.2]
+	at org.mybatis.spring.mapper.MapperScannerConfigurer.postProcessBeanDefinitionRegistry(MapperScannerConfigurer.java:360) ~[mybatis-spring-2.1.2.jar:2.1.2]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:142) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:756) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:573) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289) [spring-boot-2.7.18.jar:2.7.18]
+	at com.jiangYang.cloud.module.infra.InfraServerApplication.main(InfraServerApplication.java:19) [classes/:na]
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180) ~[spring-core-5.3.39.jar:5.3.39]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126) ~[spring-core-5.3.39.jar:5.3.39]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239) ~[spring-core-5.3.39.jar:5.3.39]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210) ~[spring-core-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.resolveStringValue(BeanDefinitionVisitor.java:296) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.resolveValue(BeanDefinitionVisitor.java:222) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.visitPropertyValues(BeanDefinitionVisitor.java:147) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.visitBeanDefinition(BeanDefinitionVisitor.java:85) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.PlaceholderConfigurerSupport.doProcessProperties(PlaceholderConfigurerSupport.java:227) ~[spring-beans-5.3.39.jar:5.3.39]
+	... 15 common frames omitted
+
+2025-04-11 22:58:35.134 | [31m WARN 23940[0;39m | [1;33mThread-5 [TID: N/A][0;39m [1;32mc.a.n.common.http.HttpClientBeanHolder  [0;39m | [HttpClientBeanHolder] Start destroying common HttpClient
+2025-04-11 22:58:35.134 | [31m WARN 23940[0;39m | [1;33mThread-10 [TID: N/A][0;39m [1;32mc.a.nacos.common.notify.NotifyCenter    [0;39m | [NotifyCenter] Start destroying Publisher
+2025-04-11 22:58:35.134 | [31m WARN 23940[0;39m | [1;33mThread-10 [TID: N/A][0;39m [1;32mc.a.nacos.common.notify.NotifyCenter    [0;39m | [NotifyCenter] Destruction of the end
+2025-04-11 22:58:35.134 | [31m WARN 23940[0;39m | [1;33mThread-5 [TID: N/A][0;39m [1;32mc.a.n.common.http.HttpClientBeanHolder  [0;39m | [HttpClientBeanHolder] Destruction of the end
+2025-04-11 23:02:38.325 | [34m INFO 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mc.j.c.m.infra.InfraServerApplication    [0;39m | Starting InfraServerApplication using Java 1.8.0_432 on Ly0217 with PID 38308 (E:\jiangyang\jiangYang-module-infra\jiangYang-module-infra-biz\target\classes started by Administrator in E:\jiangyang)
+2025-04-11 23:02:38.327 | [34m INFO 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mc.j.c.m.infra.InfraServerApplication    [0;39m | The following 1 profile is active: "dev"
+2025-04-11 23:02:38.543 | [34m INFO 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mc.a.c.n.c.NacosConfigDataLoader         [0;39m | [Nacos Config] Load config[dataId=infra-server-dev.yaml, group=DEFAULT_GROUP] success
+2025-04-11 23:02:38.545 | [1;31mERROR 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mc.a.c.n.c.NacosConfigDataLoader         [0;39m | Error getting properties from nacos: NacosConfigDataResource{properties=NacosConfigProperties{serverAddr='8.133.246.113:8848', encode='null', group='DEFAULT_GROUP', prefix='null', fileExtension='yaml', timeout=3000, maxRetry='null', configLongPollTimeout='null', configRetryTime='null', enableRemoteSyncConfig=false, endpoint='null', namespace='d750d92e-152f-4055-a641-3bc9dda85a29', accessKey='null', secretKey='null', ramRoleName='null', contextPath='null', clusterName='null', name='null'', shares=null, extensions=null, refreshEnabled=true}, optional=true, profiles=[Profiles@5d908d47 active = '[dev]', default = '[default]', accepted = '[dev]'], config=NacosItemConfig{group='DEFAULT_GROUP', dataId='infra-server-dev.yaml', suffix='yaml', refreshEnabled=true, preference=null}}
+
+org.yaml.snakeyaml.constructor.DuplicateKeyException: while constructing a mapping
+ in 'reader', line 253, column 1:
+    management:
+    ^
+found duplicate key spring
+ in 'reader', line 270, column 1:
+    spring:
+    ^
+
+	at org.yaml.snakeyaml.constructor.SafeConstructor.processDuplicateKeys(SafeConstructor.java:105) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.SafeConstructor.flattenMapping(SafeConstructor.java:76) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.SafeConstructor.constructMapping2ndStep(SafeConstructor.java:189) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructMapping(BaseConstructor.java:461) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.SafeConstructor$ConstructYamlMap.construct(SafeConstructor.java:556) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructObjectNoCheck(BaseConstructor.java:230) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructObject(BaseConstructor.java:220) ~[snakeyaml-1.30.jar:na]
+	at org.springframework.boot.env.OriginTrackedYamlLoader$OriginTrackingConstructor.constructObject(OriginTrackedYamlLoader.java:123) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructDocument(BaseConstructor.java:174) ~[snakeyaml-1.30.jar:na]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.getData(BaseConstructor.java:139) ~[snakeyaml-1.30.jar:na]
+	at org.springframework.boot.env.OriginTrackedYamlLoader$OriginTrackingConstructor.getData(OriginTrackedYamlLoader.java:103) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.yaml.snakeyaml.Yaml$1.next(Yaml.java:514) ~[snakeyaml-1.30.jar:na]
+	at org.springframework.beans.factory.config.YamlProcessor.process(YamlProcessor.java:199) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.YamlProcessor.process(YamlProcessor.java:166) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.boot.env.OriginTrackedYamlLoader.load(OriginTrackedYamlLoader.java:88) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.env.YamlPropertySourceLoader.load(YamlPropertySourceLoader.java:50) ~[spring-boot-2.7.18.jar:2.7.18]
+	at com.alibaba.cloud.nacos.parser.NacosDataParserHandler.parseNacosData(NacosDataParserHandler.java:92) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader.pullConfig(NacosConfigDataLoader.java:145) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader.doLoad(NacosConfigDataLoader.java:82) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader.load(NacosConfigDataLoader.java:69) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader.load(NacosConfigDataLoader.java:58) ~[spring-cloud-starter-alibaba-nacos-config-2021.0.6.2.jar:2021.0.6.2]
+	at org.springframework.boot.context.config.ConfigDataLoaders.load(ConfigDataLoaders.java:108) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataImporter.load(ConfigDataImporter.java:132) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataImporter.resolveAndLoad(ConfigDataImporter.java:87) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironmentContributors.withProcessedImports(ConfigDataEnvironmentContributors.java:116) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironment.processWithProfiles(ConfigDataEnvironment.java:311) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironment.processAndApply(ConfigDataEnvironment.java:232) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:102) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:94) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEnvironmentPreparedEvent(EnvironmentPostProcessorApplicationListener.java:102) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEvent(EnvironmentPostProcessorApplicationListener.java:87) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:171) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:145) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:133) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:85) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:66) ~[spring-boot-2.7.18.jar:2.7.18]
+	at java.util.ArrayList.forEach(ArrayList.java:1259) ~[na:1.8.0_432]
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:120) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:114) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:65) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:344) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289) [spring-boot-2.7.18.jar:2.7.18]
+	at com.jiangYang.cloud.module.infra.InfraServerApplication.main(InfraServerApplication.java:19) ~[classes/:na]
+
+2025-04-11 23:02:40.086 | [34m INFO 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32m.s.d.r.c.RepositoryConfigurationDelegate[0;39m | Multiple Spring Data modules found, entering strict repository configuration mode
+2025-04-11 23:02:40.089 | [34m INFO 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32m.s.d.r.c.RepositoryConfigurationDelegate[0;39m | Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-04-11 23:02:40.133 | [34m INFO 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32m.s.d.r.c.RepositoryConfigurationDelegate[0;39m | Finished Spring Data repository scanning in 28 ms. Found 0 Redis repository interfaces.
+2025-04-11 23:02:40.349 | [31m WARN 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mConfigServletWebServerApplicationContext[0;39m | Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'com.jiangYang.cloud.framework.mybatis.config.JiangYangMybatisAutoConfiguration#MapperScannerRegistrar#0' defined in null: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"
+2025-04-11 23:02:40.368 | [34m INFO 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mConditionEvaluationReportLoggingListener[0;39m | 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-04-11 23:02:40.392 | [1;31mERROR 38308[0;39m | [1;33mmain [TID: N/A][0;39m [1;32mo.s.boot.SpringApplication              [0;39m | Application run failed
+
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'com.jiangYang.cloud.framework.mybatis.config.JiangYangMybatisAutoConfiguration#MapperScannerRegistrar#0' defined in null: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"
+	at org.springframework.beans.factory.config.PlaceholderConfigurerSupport.doProcessProperties(PlaceholderConfigurerSupport.java:230) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.processProperties(PropertySourcesPlaceholderConfigurer.java:198) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.postProcessBeanFactory(PropertySourcesPlaceholderConfigurer.java:173) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.mybatis.spring.mapper.MapperScannerConfigurer.processPropertyPlaceHolders(MapperScannerConfigurer.java:406) ~[mybatis-spring-2.1.2.jar:2.1.2]
+	at org.mybatis.spring.mapper.MapperScannerConfigurer.postProcessBeanDefinitionRegistry(MapperScannerConfigurer.java:360) ~[mybatis-spring-2.1.2.jar:2.1.2]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:142) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:756) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:573) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300) [spring-boot-2.7.18.jar:2.7.18]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289) [spring-boot-2.7.18.jar:2.7.18]
+	at com.jiangYang.cloud.module.infra.InfraServerApplication.main(InfraServerApplication.java:19) [classes/:na]
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'jiangYang.info.base-package' in value "${jiangYang.info.base-package}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180) ~[spring-core-5.3.39.jar:5.3.39]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126) ~[spring-core-5.3.39.jar:5.3.39]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239) ~[spring-core-5.3.39.jar:5.3.39]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210) ~[spring-core-5.3.39.jar:5.3.39]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191) ~[spring-context-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.resolveStringValue(BeanDefinitionVisitor.java:296) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.resolveValue(BeanDefinitionVisitor.java:222) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.visitPropertyValues(BeanDefinitionVisitor.java:147) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.visitBeanDefinition(BeanDefinitionVisitor.java:85) ~[spring-beans-5.3.39.jar:5.3.39]
+	at org.springframework.beans.factory.config.PlaceholderConfigurerSupport.doProcessProperties(PlaceholderConfigurerSupport.java:227) ~[spring-beans-5.3.39.jar:5.3.39]
+	... 15 common frames omitted
+
+2025-04-11 23:02:40.394 | [31m WARN 38308[0;39m | [1;33mThread-9 [TID: N/A][0;39m [1;32mc.a.nacos.common.notify.NotifyCenter    [0;39m | [NotifyCenter] Start destroying Publisher
+2025-04-11 23:02:40.394 | [31m WARN 38308[0;39m | [1;33mThread-4 [TID: N/A][0;39m [1;32mc.a.n.common.http.HttpClientBeanHolder  [0;39m | [HttpClientBeanHolder] Start destroying common HttpClient
+2025-04-11 23:02:40.394 | [31m WARN 38308[0;39m | [1;33mThread-9 [TID: N/A][0;39m [1;32mc.a.nacos.common.notify.NotifyCenter    [0;39m | [NotifyCenter] Destruction of the end

@@ -2,7 +2,7 @@ package com.jiangYang.cloud.framework.web.config;
 
 import com.jiangYang.cloud.framework.common.enums.WebFilterOrderEnum;
 import com.jiangYang.cloud.framework.web.core.filter.CacheRequestBodyFilter;
-import com.jiangYang.cloud.framework.web.core.filter.DemoFilter;
+//import com.jiangYang.cloud.framework.web.core.filter.DemoFilter;
 import com.jiangYang.cloud.framework.web.core.handler.GlobalExceptionHandler;
 import com.jiangYang.cloud.framework.web.core.handler.GlobalResponseBodyHandler;
 import com.jiangYang.cloud.framework.web.core.util.WebFrameworkUtils;
@@ -106,11 +106,11 @@ public class JiangYangWebAutoConfiguration implements WebMvcConfigurer {
     /**
      * 创建 DemoFilter Bean，演示模式
      */
-    @Bean
-    @ConditionalOnProperty(value = "jiangYang.demo", havingValue = "true")
-    public FilterRegistrationBean<DemoFilter> demoFilter() {
-        return createFilterBean(new DemoFilter(), WebFilterOrderEnum.DEMO_FILTER);
-    }
+//    @Bean
+//    @ConditionalOnProperty(value = "jiangYang.demo", havingValue = "true")
+//    public FilterRegistrationBean<DemoFilter> demoFilter() {
+//        return createFilterBean(new DemoFilter(), WebFilterOrderEnum.DEMO_FILTER);
+//    }
 
     public static <T extends Filter> FilterRegistrationBean<T> createFilterBean(T filter, Integer order) {
         FilterRegistrationBean<T> bean = new FilterRegistrationBean<>(filter);

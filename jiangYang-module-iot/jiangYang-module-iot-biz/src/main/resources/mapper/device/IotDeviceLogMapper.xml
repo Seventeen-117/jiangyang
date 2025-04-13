@@ -66,10 +66,10 @@
     </select>
 
     <select id="selectDeviceLogUpCountByHour" resultType="java.util.Map">
-        SELECT 
+        SELECT
             TIMETRUNCATE(ts, 1h) as time,
-            COUNT(*) as data 
-        FROM 
+            COUNT(*) as data
+        FROM
         <choose>
             <when test="deviceKey != null and deviceKey != ''">
                 device_log_${deviceKey}
@@ -94,10 +94,10 @@
     </select>
 
     <select id="selectDeviceLogDownCountByHour" resultType="java.util.Map">
-        SELECT 
+        SELECT
             TIMETRUNCATE(ts, 1h) as time,
-            COUNT(*) as data 
-        FROM 
+            COUNT(*) as data
+        FROM
         <choose>
             <when test="deviceKey != null and deviceKey != ''">
                 device_log_${deviceKey}

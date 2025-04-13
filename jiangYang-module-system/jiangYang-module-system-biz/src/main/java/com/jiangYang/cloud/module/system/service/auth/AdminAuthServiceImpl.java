@@ -37,6 +37,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import javax.validation.Validator;
 import java.util.Objects;
+import java.util.Optional;
 
 import static com.jiangYang.cloud.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.jiangYang.cloud.framework.common.util.servlet.ServletUtils.getClientIP;
@@ -99,7 +100,9 @@ public class AdminAuthServiceImpl implements AdminAuthService {
     @Override
     public AuthLoginRespVO login(AuthLoginReqVO reqVO) {
         // 校验验证码
-        validateCaptcha(reqVO);
+       if(Optional.ofNullable(reqVO.getCaptchaVerification()).isPresent()){
+           validateCaptcha(reqVO);
+       }
 
         // 使用账号密码，进行登录
         AdminUserDO user = authenticate(reqVO.getUsername(), reqVO.getPassword());
