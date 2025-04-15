@@ -30,6 +30,7 @@
         <plugin.dependencies/>
     </properties>
 
+
     <build>
         <plugins>
             <!-- 插件模式 zip -->
@@ -155,7 +156,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
 
+        <!-- Config 配置中心相关 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
         <!-- 工具类相关 -->
         <dependency>
             <groupId>io.vertx</groupId>
