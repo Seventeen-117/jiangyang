@@ -5,46 +5,50 @@
 <mapper namespace="com.jiangYang.cloud.module.iot.dal.tdengine.IotDeviceLogMapper">
 
     <update id="createDeviceLogSTable">
-        CREATE STABLE IF NOT EXISTS device_log (
-                ts TIMESTAMP,
-                id NCHAR(50),
-                product_key NCHAR(50),
-                device_name NCHAR(50),
-                type NCHAR(50),
-                identifier NCHAR(255),
-                content NCHAR(1024),
-                code INT,
-                report_time TIMESTAMP
-            ) TAGS (
-                device_key NCHAR(50)
+        CREATE TABLE IF NOT EXISTS device_log (
+                                                  id CHAR(50),
+            product_key CHAR(50),
+            device_name CHAR(50),
+            type CHAR(50),
+            identifier VARCHAR(255),
+            content VARCHAR(1024),
+            code INT,
+            ts DATETIME,
+            report_time DATETIME,
+            device_key CHAR(50)
             )
     </update>
 
     <select id="showDeviceLogSTable" resultType="String">
-        SHOW STABLES LIKE 'device_log'
+        SELECT TABLE_NAME
+        FROM INFORMATION_SCHEMA.TABLES
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = 'device_log'
     </select>
 
     <insert id="insert">
-        INSERT INTO device_log_${deviceKey} (ts, id, product_key, device_name, type, identifier, content, code, report_time)
-        USING device_log
-        TAGS ('${deviceKey}')
+        INSERT INTO device_log (id, product_key, device_name, type, identifier, content, code, ts, report_time, device_key)
         VALUES (
-            NOW,
-            #{id},
-            #{productKey},
-            #{deviceName},
-            #{type},
-            #{identifier},
-            #{content},
-            #{code},
-            #{reportTime}
-        )
+                   #{id},
+                   #{productKey},
+                   #{deviceName},
+                   #{type},
+                   #{identifier},
+                   #{content},
+                   #{code},
+                   NOW(),
+                   #{reportTime},
+                   #{deviceKey}
+               )
     </insert>
 
     <select id="selectPage" resultType="com.jiangYang.cloud.module.iot.dal.dataobject.device.IotDeviceLogDO">
-        SELECT ts, id, device_key, product_key, type, identifier, content, report_time
-        FROM device_log_${reqVO.deviceKey}
+        SELECT id, product_key, device_name, type, identifier, content, code, ts, report_time, device_key
+        FROM device_log
         <where>
+            <if test="reqVO.deviceKey != null and reqVO.deviceKey != ''">
+                AND device_key = #{reqVO.deviceKey}
+            </if>
             <if test="reqVO.type != null and reqVO.type != ''">
                 AND type = #{reqVO.type}
             </if>
@@ -67,46 +71,34 @@
 
     <select id="selectDeviceLogUpCountByHour" resultType="java.util.Map">
         SELECT
-            TIMETRUNCATE(ts, 1h) as time,
-            COUNT(*) as data
-        FROM
-        <choose>
-            <when test="deviceKey != null and deviceKey != ''">
-                device_log_${deviceKey}
-            </when>
-            <otherwise>
-                device_log
-            </otherwise>
-        </choose>
+        DATE_FORMAT(ts, '%Y-%m-%d %H:00:00') as time,
+        COUNT(*) as data
+        FROM device_log
         <where>
+            <if test="deviceKey != null and deviceKey != ''">
+                AND device_key = #{deviceKey}
+            </if>
             <if test="startTime != null">
                 AND ts >= #{startTime}
             </if>
             <if test="endTime != null">
                 AND ts &lt;= #{endTime}
             </if>
-            AND (
-                 identifier IN ('online', 'offline', 'pull', 'progress', 'report', 'register', 'register_sub')
-            )
+            AND identifier IN ('online', 'offline', 'pull', 'progress', 'report', 'register', 'register_sub')
         </where>
-        GROUP BY TIMETRUNCATE(ts, 1h)
+        GROUP BY DATE_FORMAT(ts, '%Y-%m-%d %H:00:00')
         ORDER BY time ASC
     </select>
 
     <select id="selectDeviceLogDownCountByHour" resultType="java.util.Map">
         SELECT
-            TIMETRUNCATE(ts, 1h) as time,
-            COUNT(*) as data
-        FROM
-        <choose>
-            <when test="deviceKey != null and deviceKey != ''">
-                device_log_${deviceKey}
-            </when>
-            <otherwise>
-                device_log
-            </otherwise>
-        </choose>
+        DATE_FORMAT(ts, '%Y-%m-%d %H:00:00') as time,
+        COUNT(*) as data
+        FROM device_log
         <where>
+            <if test="deviceKey != null and deviceKey != ''">
+                AND device_key = #{deviceKey}
+            </if>
             <if test="startTime != null">
                 AND ts >= #{startTime}
             </if>
@@ -115,7 +107,7 @@
             </if>
             AND identifier IN ('set', 'get', 'upgrade', 'unregister_sub', 'topology_add')
         </where>
-        GROUP BY TIMETRUNCATE(ts, 1h)
+        GROUP BY DATE_FORMAT(ts, '%Y-%m-%d %H:00:00')
         ORDER BY time ASC
     </select>
 
