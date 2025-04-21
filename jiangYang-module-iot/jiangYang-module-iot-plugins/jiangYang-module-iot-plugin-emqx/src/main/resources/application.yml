@@ -1,6 +1,6 @@
 spring:
   application:
-    name: jiangYang-module-iot-plugin-emqx
+    name: iot-plugin-emqx
   profiles:
     active: dev
   main:

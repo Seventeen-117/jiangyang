@@ -1,6 +1,6 @@
 spring:
   application:
-    name: jiangYang-module-iot-plugin-http
+    name: iot-plugin-http
   profiles:
     active: dev
 

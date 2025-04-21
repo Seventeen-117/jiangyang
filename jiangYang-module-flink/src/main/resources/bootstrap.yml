@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: jiangyang-module-flink
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  config:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    import:
+      - optional:classpath:application-${spring.profiles.active}.yaml
+      - optional:nacos:${spring.application.name}-${spring.profiles.active}.yaml  # Nacos 配置导入

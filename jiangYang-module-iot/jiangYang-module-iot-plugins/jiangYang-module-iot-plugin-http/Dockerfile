@@ -26,21 +26,5 @@ EXPOSE 8092 8093
 
 # 设置环境变量
 ENV JAVA_OPTS="-Xms512m -Xmx512m -XX:+UseG1GC"
-ENV SPRING_PROFILES_ACTIVE="prod"
-ENV UPSTREAM_URL=""
-ENV NACOS_SERVER_ADDR=""
-ENV NACOS_NAMESPACE=""
-
-# 健康检查
-HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:8092/actuator/health || exit 1
-
-# 切换到非root用户
-USER appuser
-
-# 启动命令
-ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} \
-    -Dspring.profiles.active=${SPRING_PROFILES_ACTIVE} \
-    -DjiangYang.iot.plugin.common.upstream-url=${UPSTREAM_URL:-http://gateway:48080} \
-    -Dspring.cloud.nacos.server-addr=${NACOS_SERVER_ADDR} \
-    -Dspring.cloud.nacos.discovery.namespace=${NACOS_NAMESPACE} \
-    -cp app:app/lib/*:app/META-INF org.springframework.boot.loader.JarLauncher"]
+## 启动后端项目
+CMD java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar app.jar
