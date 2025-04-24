@@ -38,10 +38,6 @@
         </dependency>
 
         <!-- 业务组件 -->
-        <dependency>
-            <groupId>com.jiangYang.cloud</groupId>
-            <artifactId>jiangYang-spring-boot-starter-biz-tenant</artifactId>
-        </dependency>
 
         <!-- Web 相关 -->
         <dependency>
